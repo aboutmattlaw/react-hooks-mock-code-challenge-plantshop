@@ -12,6 +12,11 @@ function PlantPage() {
 
 
   const [plants, setPlants] = useState([])
+  const [searchh, setSearchh] = useState("")
+
+
+
+
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
@@ -19,8 +24,11 @@ function PlantPage() {
     .then(data => setPlants(data))
   },[])
   
+
+  const filterdPlants = plants.filter(plant => plant.name.includes(searchh))
+
   
-  const plantList = plants.map((plant) => <PlantCard 
+  const plantList = filterdPlants.map((plant) => <PlantCard 
   id={plant.id} 
   name={plant.name} 
   image={plant.image}
@@ -29,11 +37,20 @@ function PlantPage() {
   
 
 
+  // QUANG CHAT
+  // function runSearch (search) {
+  //   const filterdPlants = []
+      
+        
+  //     );
+  // })}
+
+
 
   return (
     <main>
       <NewPlantForm setPlants={setPlants}/>
-      <Search />
+      <Search setSearchh={setSearchh}/>
       <PlantList plantList={plantList}/>
     </main>
   );

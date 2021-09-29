@@ -10,6 +10,8 @@ function handleStock(e){
   }
 
 
+
+
   return (
     <li className="card">
       <img src={image} alt={name} />
